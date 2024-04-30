@@ -20,7 +20,7 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive
                     ? "text-white bg-black px-4 py-2 rounded-md text-sm font-medium"
-                    : "text-white hover:bg-black px-3 py-2 rounded-md text-sm font-medium"
+                    : "mr-3 text-white hover:bg-black px-3 py-2 rounded-md text-sm font-medium"
                 }
               >
                 Home
@@ -29,8 +29,8 @@ const Navbar = () => {
                 to="/jobs"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white bg-black px-3 py-2 rounded-md text-sm font-medium"
-                    : "ml-3 text-white hover:bg-black px-3 py-2 rounded-md text-sm font-medium"
+                    ? "text-white bg-black px-4 py-2 rounded-md text-sm font-medium"
+                    : "mr-1 ml-4 text-white hover:bg-black px-3 py-2 rounded-md text-sm font-medium"
                 }
               >
                 Jobs
@@ -39,7 +39,7 @@ const Navbar = () => {
                 to="/add-job"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white bg-black px-3 py-2 rounded-md text-sm font-medium"
+                    ? "ml-3 text-white bg-black px-4 py-2 rounded-md text-sm font-medium"
                     : "ml-3 text-white hover:bg-black px-3 py-2 rounded-md text-sm font-medium"
                 }
               >

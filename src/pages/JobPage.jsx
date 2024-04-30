@@ -1,13 +1,23 @@
 import React from "react";
-import { useParams, useLoaderData } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, useLoaderData, useNavigate, Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { useState } from "react";
-const JobPage = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
+import { toast } from "react-toastify";
+const JobPage = ({ deleteJob }) => {
+  const [isAdmin, setIsAdmin] = useState(true);
   const { id } = useParams();
   const job = useLoaderData();
+  const navivate = useNavigate();
+
+  const handleDelete = async (id) => {
+    const confirm = window.confirm("Are you sure you want to delete this job?");
+    if (!confirm) return;
+
+    deleteJob(id);
+    toast.success("Job deleted successfully!");
+    navivate("/jobs");
+  };
   return (
     <>
       <section>
@@ -51,7 +61,7 @@ const JobPage = () => {
 
             {/* <!-- Sidebar --> */}
             <aside>
-              <div className="flex  flex-col  bg-white p-6 rounded-lg shadow-md">
+              <div className="flex  flex-col  bg-white p-4 rounded-lg shadow-md">
                 <h3 className="text-xl font-bold mb-6">Company Info</h3>
 
                 <h2 className="text-2xl">{job.company.name}</h2>
@@ -62,14 +72,13 @@ const JobPage = () => {
 
                 <h3 className="text-xl">Contact Email:</h3>
 
-                <p className="lg:max-w-lg  my-2 bg-indigo-100 p-2 font-bold md:text-xs lg:text-base  md:min-w-full ">
+                <p className="lg:w-full  my-2 bg-indigo-100 p-2 font-bold md:text-xs lg:text-base  md:min-w-full ">
                   {job.company.contactEmail}
                 </p>
 
                 <h3 className="text-xl">Contact Phone:</h3>
 
-                <p className="my-2 bg-indigo-100 p-2 font-bold">
-                  {" "}
+                <p className="lg:w-full  my-2 bg-indigo-100 p-2 font-bold md:text-xs lg:text-base  md:min-w-full">
                   {job.company.contactPhone}
                 </p>
               </div>
@@ -83,7 +92,7 @@ const JobPage = () => {
                     Edit Job
                   </Link>
                   <button
-                    onClick={() => onDeleteClick(job.id)}
+                    onClick={() => handleDelete(job.id)}
                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                   >
                     Delete Job
