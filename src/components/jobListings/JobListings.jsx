@@ -8,7 +8,9 @@ const JobListings = ({ isHome = false }) => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const apiURL = isHome ? "/api/jobs?_limit=3" : "/api/jobs";
+      const apiURL = isHome
+        ? "https://react-project-backend-sable.vercel.app/jobs"
+        : "https://react-project-backend-sable.vercel.app/jobs";
       try {
         const response = await fetch(apiURL);
         const data = await response.json();
@@ -35,7 +37,7 @@ const JobListings = ({ isHome = false }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {jobListings.map((job) => (
-              <JobListing key={job.id} job={job} />
+              <JobListing key={job._id} job={job} />
             ))}
           </div>
         )}

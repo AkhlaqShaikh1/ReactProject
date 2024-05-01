@@ -21,7 +21,7 @@ const JobListing = ({ job }) => {
         </div>
         <div className="mb-5"> {description}</div>
         <button
-          onClick={handleClick}
+          onClick={() => setShowFullDescription(!showFullDescription)}
           className="text-indigo-500 mb-5 hover:text-indigo-600"
         >
           {showFullDescription ? "Less" : "More"}
@@ -34,7 +34,7 @@ const JobListing = ({ job }) => {
             {job.location}
           </div>
           <Link
-            to={`/jobs/${job.id}`}
+            to={`/jobs/${job._id}`}
             className="h-15 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More

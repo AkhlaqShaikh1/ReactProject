@@ -15,13 +15,16 @@ import EditJobPage from "./pages/EditJob";
 const App = () => {
   const addJob = async (newJob) => {
     try {
-      const response = await fetch("/api/jobs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newJob),
-      });
+      const response = await fetch(
+        "https://react-project-backend-sable.vercel.app/add-job",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newJob),
+        }
+      );
     } catch (error) {
       alert("Failed to add job");
     }
@@ -29,21 +32,27 @@ const App = () => {
 
   const deleteJob = async (id) => {
     try {
-      const response = await fetch(`/api/jobs/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://react-project-backend-sable.vercel.app/jobs/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
     } catch (error) {
       alert("Failed to delete job");
     }
   };
-  const updateJob = async (job) => {
-    const res = await fetch(`/api/jobs/${job.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(job),
-    });
+  const updateJob = async (job, id) => {
+    const res = await fetch(
+      `https://react-project-backend-sable.vercel.app/jobs/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(job),
+      }
+    );
     return;
   };
 

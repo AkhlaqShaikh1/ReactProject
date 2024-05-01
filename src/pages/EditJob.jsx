@@ -18,12 +18,10 @@ const EditJobPage = ({ updateJobSubmit }) => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-
   const submitForm = (e) => {
     e.preventDefault();
 
     const updatedJob = {
-      id,
       title,
       type,
       location,
@@ -37,7 +35,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
       },
     };
 
-    updateJobSubmit(updatedJob);
+    updateJobSubmit(updatedJob , id);
 
     toast.success("Job Updated Successfully");
 
