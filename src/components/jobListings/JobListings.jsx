@@ -13,8 +13,12 @@ const JobListings = ({ isHome = false }) => {
         : "https://react-project-backend-sable.vercel.app/jobs";
       try {
         const response = await fetch(apiURL);
-        const data = await response.json();
-        setJobListings(data);
+        let data = await response.json();
+        if (Object.keys(data["message"]).length === 0) {
+          setJobListings([]);
+        } else {
+          setJobListings(data);
+        }
       } catch (error) {
         alert(JSON.stringify(error));
       } finally {
@@ -34,10 +38,14 @@ const JobListings = ({ isHome = false }) => {
 
         {loading ? (
           <Spinner loading={loading} />
+        ) : jobListings.length == 0 ? (
+          <div className="text-red-500 font-bold text-3xl mt-6 text-center">
+            No jobs found
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {jobListings.map((job) => (
-              <JobListing key={job._id} job={job} />
+              <JobListing key={job.id} job={job} />
             ))}
           </div>
         )}
