@@ -108,7 +108,7 @@ const JobPage = ({ deleteJob }) => {
 };
 
 const jobLoader = async ({ params }) => {
-  const response = await fetch(`/api/jobs/${params.id}`);
+  const response = await fetch(`https://react-project-backend-sable.vercel.app/jobs/${params.id}`);
   const data = await response.json();
   return data;
 };
