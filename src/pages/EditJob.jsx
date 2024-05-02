@@ -18,7 +18,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const submitForm = (e) => {
+  const submitForm = async(e) => {
     e.preventDefault();
 
     const updatedJob = {
@@ -35,7 +35,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
       },
     };
 
-    updateJobSubmit(updatedJob , id);
+    await updateJobSubmit(updatedJob , id);
 
     toast.success("Job Updated Successfully");
 

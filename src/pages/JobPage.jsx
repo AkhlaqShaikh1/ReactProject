@@ -14,7 +14,7 @@ const JobPage = ({ deleteJob }) => {
     const confirm = window.confirm("Are you sure you want to delete this job?");
     if (!confirm) return;
 
-    deleteJob(id);
+    await deleteJob(id);
     toast.success("Job deleted successfully!");
     navivate("/jobs");
   };
@@ -108,7 +108,9 @@ const JobPage = ({ deleteJob }) => {
 };
 
 const jobLoader = async ({ params }) => {
-  const response = await fetch(`https://react-project-backend-sable.vercel.app/jobs/${params.id}`);
+  const response = await fetch(
+    `https://react-project-backend-sable.vercel.app/jobs/${params.id}`
+  );
   const data = await response.json();
   return data;
 };
